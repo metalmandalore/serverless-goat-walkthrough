@@ -6,12 +6,15 @@ Verbose walkthrough
 ```diff
 - red
 + green
-~ blue
 ! orange
 # grey
-% anything
-? something
-* nothing
-^ carrot
-@ colors
 ```
+those colors are dumb
+
+<style
+  type="text/css">
+h1 {color:blue'} 
+p {color:green;} 
+</style>
+<h1> am I blue? </h1>
+<p> green? </p>
