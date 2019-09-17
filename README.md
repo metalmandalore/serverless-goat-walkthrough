@@ -4,6 +4,6 @@ Verbose walkthrough
 
 // color testing
 
-s < font-style: normal; } //strike-through
+s { font-style: normal; } //strike-through
 s { color: blue }
 ~~BLUE~~
