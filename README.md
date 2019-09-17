@@ -3,4 +3,15 @@ Verbose walkthrough
 
 
 // color testing
-<font color='blue'>I'm blue! </font>
+```diff
+- red
++ green
+~ blue
+! orange
+# grey
+% anything
+? something
+* nothing
+^ carrot
+@ colors
+```
