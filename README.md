@@ -11,10 +11,5 @@ Verbose walkthrough
 ```
 those colors are dumb
 
-<style
-  type="text/css">
-h1 {color:blue'} 
-p {color:green;} 
-</style>
-<h1> am I blue? </h1>
-<p> green? </p>
+<style>p{color:red;}</style>
+<p>feeling like on of many reasons women are rare on github is the lack of a way to make things pretty</p>
