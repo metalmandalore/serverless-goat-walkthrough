@@ -3,13 +3,11 @@ Verbose walkthrough
 
 
 // color testing
-```diff
-- red
-+ green
-! orange
-# grey
-```
-those colors are dumb
-
-<style>p{color:red;}</style>
-<p>feeling like on of many reasons women are rare on github is the lack of a way to make things pretty</p>
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output())  {
+    sprintf{"<font color='%s'>%s</font>", color, x)
+  } else x
+}
+colorize("I wanna be RED", "red")
