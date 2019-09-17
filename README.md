@@ -5,7 +5,7 @@ Verbose walkthrough
 // color testing
 
 
-<span style="color:purple">I'm so *shiny*!!!</span>
+<span style="color:red">I'm so **shiny**!!!</span>
 ```js
   import { Component } from '@angular/core';
   import { MovieService } from './services/movie.service';
