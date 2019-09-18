@@ -58,7 +58,8 @@ e.g. `https://inject; pwd`
        * table name
        * s3 bucket name
 
-## Access S3 Bucket via URL
+## Access the S3 Bucket 
+### With URL
 1. Explore the bucket address by opening a new tab, and copying/pasting the URL in the old tab with modifications  
 * URL Modifications for the 2nd tab:
       * remove the last portion of the URI (e.g. /a3243c-321c-9d21-342f3ebc2a09)
@@ -71,5 +72,5 @@ This site also contains the **Insecure Serverless Deployment Configuration** vul
       * This page should be secured and encrypted instead of being publicly accessible 
 Return to the previous tab
 
-## Access the S3 Bucket via AWS CLI
+### With AWS CLI
 
