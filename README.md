@@ -61,7 +61,7 @@ e.g. `https://inject; pwd`
 ## Access S3 Bucket & Tables
 ### S3 Bucket Access with No Credentials
 1. Explore the bucket address by opening a new tab, and copying/pasting the URL in the old tab with modifications  
-* URL Modifications for the 2nd tab:  
+    * URL Modifications for the 2nd tab:  
       - remove the last portion of the URI (e.g. /a3243c-321c-9d21-342f3ebc2a09)  
       - change the s3-website-us-east-1.amazonaws.com to be a correct bucket address (s3.amazonaws.com)
 2. Now that the URL modifications have been made, load the s3 bucket  
@@ -75,8 +75,8 @@ Return to the previous tab
 ### Table Access with AWS CLI
 1. Using the information found in the env variables create a user profile 
 `aws configure profile --user`  
-* aws_secret_access_key    
-* aws_access_key   
+    * aws_secret_access_key    
+    * aws_access_key   
 2. Add the aws_session_token to the end of the user profile configuration by editing the *~/.aws/credentials* file  
 `vim ~/.aws/credentials`
 3. List the database contents  
