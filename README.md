@@ -6,7 +6,7 @@
 ### Lambda Function API
 1. Locate the Endpoint URL under CloudFormation Outputs
 2. Navigate to URL in a separate browser  
-The endpoint loads an OWASP ServerlessGoat page containing a form consisting of  
+The endpoint loads an OWASP ServerlessGoat page containing a form consisting of
   * a single user input textbox and submit button  
   * a list of potential vulnerabilities  
 This form was created to convert the URL of a Word Doc into a document on a webpage  
