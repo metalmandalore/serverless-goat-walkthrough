@@ -92,7 +92,7 @@ Return to the previous tab
 `ls -la`
 4. Display commands run via Lambda Function
 `cat <key>`
-5. Remove all traces of your IP address
+5. Remove all traces of your IP address  
 `aws s3api delete-object --bucket <s3-bucket> --key <key> --profile`
 6. Repeat for each key value found  
 
@@ -105,7 +105,7 @@ This will demonstrate the serverless function going from reachable to unreachabl
 2. Copy the address between brackets, URL encode it, and then add to the end of the address 
 3. Repeat Step 2 5x for the <http-address> value, which will perform the DoS
 4. The run the following bash script  
-`for i in {1.100}; do  
-  echo $i  
-  curl -L <http-address>  
-done`
+`for i in {1.100}; do`  
+`  echo $i`   
+`  curl -L <http-address>`  
+`done`
