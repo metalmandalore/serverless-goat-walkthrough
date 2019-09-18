@@ -104,8 +104,8 @@ This will demonstrate the serverless function going from reachable to unreachabl
 (https://x.execute-api.us-east-1.amazonaws.com/Prod/api/convert?document_url=)
 2. Copy the address between brackets, URL encode it, and then add to the end of the address 
 3. Repeat Step 2 5x for the <http-address> value, which will perform the DoS
-4. The run the following bash script
-for i in {1.100}; do 
+4. The run the following bash script  
+`for i in {1.100}; do 
   echo $i
   curl -L <http-address>
-done
+done`
