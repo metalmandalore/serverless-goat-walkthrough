@@ -8,7 +8,7 @@
 2. Navigate to URL in a separate browser  
 The endpoint loads an OWASP ServerlessGoat page containing a form consisting of 
       * a single user input textbox and submit button  
-      * a list of potential vulnerabilities  
+      * a list of potential vulnerabilities
 This form was created to convert the URL of a Word Doc into a document on a webpage  
 The textbox already contains the URL of a doc file  
 3. Click Submit with the currrent value in place  
@@ -41,4 +41,24 @@ e.g. `https://inject; pwd`
       * Table information 
       * Permissions to curl (potentially) 
       * Output URL 
- 
+ 4. Explore file contents  
+ `https://inject; cat node_modules/.bin/uuid` . 
+ USAGE: `uuid [ver] [options]` + some encryption math used to generate keys  this doesn't seem to be entirely random
+ 5. Read more javascript
+  `https://inject; cat node_modules/node-uuid/package.json`
+  *lists package version*  
+  Research into this version of UUID results in a known vulnerability to insecure randomness
+  **TL:DR;** math.random can produce predictable values
+  keys generated and used as storage in the s3 bucket may be predicted
+  This could be *very* interesting if it was used to store PII, but it isn't for this circumstance
+ 6. Check for unsecured environmental variables
+ `https://inject; env'  
+ Results in *very* useful information:
+       * aws_session_token
+       * aws_secret_access_key
+       * aws_access_key
+       * table name
+       * s3 bucket name
+
+### Access S3 Bucket via URL
+
