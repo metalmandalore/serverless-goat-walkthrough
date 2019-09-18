@@ -62,8 +62,8 @@ e.g. `https://inject; pwd`
 ### S3 Bucket Access with No Credentials
 1. Explore the bucket address by opening a new tab, and copying/pasting the URL in the old tab with modifications  
 * URL Modifications for the 2nd tab:  
-      * remove the last portion of the URI (e.g. /a3243c-321c-9d21-342f3ebc2a09)  
-      * change the s3-website-us-east-1.amazonaws.com to be a correct bucket address (s3.amazonaws.com)
+      - remove the last portion of the URI (e.g. /a3243c-321c-9d21-342f3ebc2a09)  
+      - change the s3-website-us-east-1.amazonaws.com to be a correct bucket address (s3.amazonaws.com)
 2. Now that the URL modifications have been made, load the s3 bucket  
 This site contains information concerning the s3 bucket contents, and each Key listed can be added to the URL as a path  
 This site does has a **Broken Authentication** vulnerability because it does not require any authorization for access  
