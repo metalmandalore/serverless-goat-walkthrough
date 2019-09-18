@@ -16,12 +16,12 @@ This loads a A Poison Tree poem with a URL that seems remarkably close to an s3 
 
 ### Information Gathering
 1. Click back on the browser to return to the page 
-2. Attempt **Function Data Injection** by adding code to the end of the URL
-e.g. try adding `; pwd`
+2. Attempt **Function Data Injection** by adding code to the end of the URL  
+*e.g. try adding *`; pwd`
 3. Click submit to load the original poem as well as garbeled information 
   *this appears to be vulnerable to __Function Data Injection__*
 #### Improved injection attempts
-1. Click back and change the URL form to a URL that doesn't contain a doc file followed by a snippet of code . 
+1. Click back and change the URL form to a URL that doesn't contain a doc file followed by a snippet of code  
 e.g. `https://inject; pwd`
 2. Click submit to load the current working directory */var/task*
 3. Repeat this tasks with the following bash code add for more information  
