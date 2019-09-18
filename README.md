@@ -1,4 +1,4 @@
-#serverless-goat Walkthrough
+# serverless-goat Walkthrough
 
 *Still to add **INSTALL/REMOVAL** steps*
 
