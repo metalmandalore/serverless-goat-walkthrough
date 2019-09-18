@@ -6,9 +6,9 @@
 ### Lambda Function API
 1. Locate the Endpoint URL under CloudFormation Outputs
 2. Navigate to URL in a separate browser  
-The endpoint loads an OWASP ServerlessGoat page containing a form consisting of
-- a single user input textbox and submit button  
-- a list of potential vulnerabilities  
+The endpoint loads an OWASP ServerlessGoat page containing a form consisting of 
+* a single user input textbox and submit button  
+* a list of potential vulnerabilities  
 This form was created to convert the URL of a Word Doc into a document on a webpage  
 The textbox already contains the URL of a doc file  
 3. Click Submit with the currrent value in place  
@@ -29,7 +29,7 @@ e.g. `https://inject; pwd`
 `https://inject; whoami`
    *current user should be sbx-user0666 or similar*   
 `https://inject; ls -la`
-    *lists the current directory, which shows index.js, as well as a node_modules subdirectory*   
+    *lists the current directory (index.js + node_modules subdirectory)*   
 `https://inject; cat /etc/passwd`
   *lists current users*  
 `https://inject; cat index.js`
