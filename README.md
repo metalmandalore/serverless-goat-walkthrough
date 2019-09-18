@@ -50,7 +50,7 @@ e.g. `https://inject; pwd`
   keys generated and for storage in the s3 bucket may be predicted  
   This could be *very* interesting if it was used to store PII, but it isn't for this circumstance  
  6. Check for unsecured environmental variables  
- `https://inject; env'  
+ `https://inject; env`  
  Results in *very* useful information: 
        * aws_session_token
        * aws_secret_access_key
@@ -58,11 +58,11 @@ e.g. `https://inject; pwd`
        * table name
        * s3 bucket name
 
-## Access the S3 Bucket 
-### With URL
+## Access S3 Bucket & Tables
+### S3 Bucket Access with No Credentials
 1. Explore the bucket address by opening a new tab, and copying/pasting the URL in the old tab with modifications  
-* URL Modifications for the 2nd tab:
-      * remove the last portion of the URI (e.g. /a3243c-321c-9d21-342f3ebc2a09)
+* URL Modifications for the 2nd tab:  
+      * remove the last portion of the URI (e.g. /a3243c-321c-9d21-342f3ebc2a09)  
       * change the s3-website-us-east-1.amazonaws.com to be a correct bucket address (s3.amazonaws.com)
 2. Now that the URL modifications have been made, load the s3 bucket  
 This site contains information concerning the s3 bucket contents, and each Key listed can be added to the URL as a path  
@@ -72,5 +72,14 @@ This site also contains the **Insecure Serverless Deployment Configuration** vul
       * This page should be secured and encrypted instead of being publicly accessible 
 Return to the previous tab
 
-### With AWS CLI
+### Table Access with AWS CLI
+1. Using the information found in the env variables create a user profile 
+`aws configure profile --user`  
+* aws_secret_access_key    
+* aws_access_key   
+Add the aws_session_token to the end of the user profile configuration by editing the *~/.aws/credentials* file  
+`vim ~/.aws/credentials`
+2. List the database contents
+`aws dynomodb scan --table-name <table-name> --profile user`
 
+### S3 Bucket Access with AWS CLI
