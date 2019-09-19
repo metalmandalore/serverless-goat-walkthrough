@@ -10,7 +10,7 @@ The endpoint loads an OWASP ServerlessGoat page containing a form consisting of
       * a list of potential vulnerabilities  
 3. Click Submit with the currrent value in place  
 This loads a A Poison Tree poem with a URL that seems remarkably close to an s3 bucket address  
-**Save this URL For Later, or skip to ###S3 Bucket Access with No Credentials see it's use now**
+**Save this URL For Later, or skip to (###S3 Bucket Access with No Credentials) see it's use now**
 
 ## Information Gathering
 1. Click back on the browser to return to the page 
