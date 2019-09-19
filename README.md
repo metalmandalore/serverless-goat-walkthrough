@@ -71,15 +71,21 @@ This site also contains the **Insecure Serverless Deployment Configuration** vul
       * This page should be secured and encrypted instead of being publicly accessible 
 Return to the previous tab
 
-### Node.js Access
+### Enumeration
+#### Node.js Access Enumeration
 Attempt to access content/information using Node.js  
 1. What version of node.js?  
 `https://; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log("Running Node.js" + process.version))})();'`
 2. Can the database be scanned?  
 `https://; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log(await new AWS.DynamoDB.DocumentClient().scan({TableName: process.env.TABLE_NAME}).promise());})();'`
+3. Can the database be queried?
+4. Does GetItem work?
+5. Does PutItem work?
+6. Does UpdateItem work?
+??? Do I enumerate all the things? Can I automate this?
+7. Can the s3 buckets be scanned?
 
-## Enumeration
-### Profile Enumeration
+#### Profile Enumeration
 1. Using the information found in the env variables create a user profile 
 `aws configure profile --user666`  
     * aws_secret_access_key    
@@ -91,15 +97,32 @@ Attempt to access content/information using Node.js
 3. Obtain current profile information 
 `aws sts get-caller-identity --profile user666`  
 **Improper Exception Handling and Verbose Errors**
+4. How do I discover information about this profile/user/permissions/roles?
 
-### Database Actions Enumeration
-1. Attempt to scan the database contents  
+#### Database Actions Enumeration
+1. Attempt to DescribeTable
+
+2. Attempt to scan the database contents  
 `aws dynomodb scan --table-name <table-name> --profile user`
+3. Attempt to Query the database
+4. Attempt to GetItem
+5. Attempt to DeleteItem
+6. Attempt to UpdateItem
+7. Attempt to BatchWriteItem
+8. Attempt to BatchGetItem
+9. What other DB action policies are there to be enumerated?
 
-
-### S3 Bucket Actions Enumeration
-1. Attempt to list Bucket Contents  
+#### S3 Bucket Actions Enumeration
+1. Attempt ListBucket
 `aws s3 ls <s3-bucket> --profile user` 
+2. Attempt GetBucketLocation
+3. Attempt GetLifecycleConfiguration
+4. Attempt PutLifecycleConfiguration
+5. Attempt GetObject
+6. Attempt GetObjectAcl
+7. Attempt GetObjectVersion
+8. Attempt PutObject
+9. Attempt PutObjectAcl
 2. Attempt to download bucket contents  
 `aws s3 sync s3://<s3-bucket> . --profile user`
 3. Review downloaded bucket content  
