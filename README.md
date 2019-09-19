@@ -104,7 +104,7 @@ Attempt to access content/information using Node.js
 1. Attempt to DescribeTable
 
 2. Attempt to scan the database contents  
-`aws dynomodb scan --table-name <table-name> --profile user`
+`aws dynamodb scan --table-name <table-name> --profile user`
 3. Attempt to Query the database
 4. Attempt to GetItem
 5. Attempt to DeleteItem
