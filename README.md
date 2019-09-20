@@ -129,29 +129,20 @@ This is **Over-Privileged Function Permissions & Roles**
 **Improper Exception Handling and Verbose Errors**
 
 #### Database Actions Enumeration
-1. Attempt to DescribeTable
-
-2. Attempt to scan the database contents  
+1. Attempt to scan the database contents with AWS CLI  
 `aws dynamodb scan --table-name <table-name> --profile user666`
-3. Attempt to Query the database
-4. Attempt to GetItem
-5. Attempt to DeleteItem
-6. Attempt to UpdateItem
-7. Attempt to BatchWriteItem
-8. Attempt to BatchGetItem
-9. What other DB action policies are there to be enumerated?
-
+2. Additional database commands to attempt:
+    * Describe-table
+    * Query the database
+    * Attempt to GetItem
+    * Attempt to DeleteItem
+    * Attempt to UpdateItem
+    * Attempt to BatchWriteItem
+    * Attempt to BatchGetItem
+ 
 #### S3 Bucket Actions Enumeration
 1. Attempt ListBucket
 `aws s3 ls <s3-bucket> --profile user` 
-2. Attempt GetBucketLocation
-3. Attempt GetLifecycleConfiguration
-4. Attempt PutLifecycleConfiguration
-5. Attempt GetObject
-6. Attempt GetObjectAcl
-7. Attempt GetObjectVersion
-8. Attempt PutObject
-9. Attempt PutObjectAcl
 2. Attempt to download bucket contents  
 `aws s3 sync s3://<s3-bucket> . --profile user`
 3. Review downloaded bucket content  
@@ -161,6 +152,15 @@ This is **Over-Privileged Function Permissions & Roles**
 5. Attempt to delete bucket contents  
 `aws s3api delete-object --bucket <s3-bucket> --key <key> --profile`
 6. Remove all traces of requests by your IP address by repeated step 5 for each key value found  
+7. Additional S3 actions to attempt:  
+   * GetBucketLocation
+   * Attempt GetLifecycleConfiguration
+   * Attempt PutLifecycleConfiguration
+   * Attempt GetObject
+   * Attempt GetObjectAcl
+   * Attempt GetObjectVersion
+   * Attempt PutObject
+   * Attempt PutObjectAcl
 
 ### DoS Attack
 Create a simple bash script to curl the site multiple times   
