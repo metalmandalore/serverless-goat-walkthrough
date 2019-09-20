@@ -43,7 +43,7 @@ e.g. `https://inject; pwd`
   *Lists current users*  
 `https://inject; cat index.js`
     *Provides code for basic information on how this page functions*   
-    Important information to be gathered from this file includes
+    Important information to be gathered from this file includes:
       * Database 
       * S3 bucket Put permissions
       * node.js package used 
