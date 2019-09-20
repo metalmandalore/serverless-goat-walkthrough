@@ -11,7 +11,8 @@ During my usage of serverless-goat I encountered 0 charges to my free-tier Amazo
 ## Installation 
 1. Access the AWS Serverless Application Repository   
 https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:761130837472:applications~serverless-goat
-
+2. Click Deploy
+3. Scroll down and click Deploy
 
 ## Lambda Function API
 1. Locate the Endpoint URL under CloudFormation Outputs
@@ -33,7 +34,7 @@ This loads a A Poison Tree poem with a URL that seems remarkably close to an s3 
 1. Click back and change the URL form to a URL that doesn't contain a doc file followed by a snippet of code  
 e.g. `https://inject; pwd`
 2. Click submit to load the current working directory */var/task* 
-3. Repeat this tasks with the following bash code add for more information resulting from **Over-Privileged Function Permissions**  
+3. Repeat this tasks with the following bash code additions for more information resulting from **Over-Privileged Function Permissions**  
 **Document everything for later**    
 `https://inject; whoami`
    *Current user should be sbx-user0666 or similar*   
