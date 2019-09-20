@@ -184,12 +184,17 @@ done
 3. Navigate to Cloudformation
 4. Click on the name of the Stack link
 5. Click Delete
+5. Click Delete Stack
 
 ### If Delete Fails
 You may retain resources that are failing to delete
-1. Select Bucket as the resource to retain
-2. Click Delete
-3. Navigate to Services 
-4. Navigate to S3
-5. Select the S3 bucket and delete
+1. Click Delete
+2. Select Bucket as the resource to retain
+3. Click Delete Stack
+4. Navigate to Services 
+5. Navigate to S3
+6. Select the S3 bucket 
+7. Empty the bucket
+8. Select and delete the bucket
+
 
