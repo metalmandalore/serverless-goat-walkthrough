@@ -16,11 +16,11 @@ https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-eas
 This may take a few minutes.    
 For the purpose of this training, it's kind of *cheating* to note the **Permissions** and **Resources** during the 1st time through, but the **Readme file** should be read.
 To improve application security it is important to take note of the configured permissions before deployment and ensure least privileges are being followed. It is also a great idea to review the following post deployment for verification:  
-  * Permissions
+    * Permissions
       * SAM policy templates
       * Capabilities
-  * Resources
-  * Readme File  
+    * Resources
+    * Readme File  
       
 
 ## Lambda Function API
