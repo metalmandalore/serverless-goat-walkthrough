@@ -2,7 +2,7 @@
 written by MetalMandalore   
 
 Original OWASP written documentation on serverless-goat can be found here:  
-http://github.com/OWASP/Serverless-Goat
+http://github.com/OWASP/Serverless-Goat   
 After being inspired by the essentially free training for a serverless lambda function I created this walkthrough.    
 
 **Note this requires the setup of a free-tier Amazon AWS account**   
