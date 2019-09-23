@@ -93,7 +93,7 @@ while this is **Function Data Injection** it is also **Serverless Function Execu
 2. Now that the URL modifications have been made, load the s3 bucket  
 This site contains information concerning the s3 bucket contents, and each Key listed can be added to the URL as a path  
 This site does has a **Broken Authentication** vulnerability because it does not require any authorization for access  
-This site also contains the **Insecure Serverless Deployment Configuration** vulerability for the following reasons
+This site also contains the **Insecure Serverless Deployment Configuration** vulnerability for the following reasons
       * The s3 bucket URL should not be easy to infer
       * This page should be secured and encrypted instead of being publicly accessible 
 Return to the previous tab
