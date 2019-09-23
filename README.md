@@ -72,7 +72,7 @@ while this is **Function Data Injection** it is also **Serverless Function Execu
   `https://inject; cat node_modules/node-uuid/package.json`  
   *lists package version*  
   Research into this version of UUID results in a known vulnerability to insecure randomness  
-  **TL:DR;** math.random can produce predictable values and this in an **Insecure 3rd Party Dependency**  
+  **TL:DR;** math.random can produce predictable values and this is an **Insecure 3rd Party Dependency**  
   keys generated and for storage in the s3 bucket may be predicted  
   This could be *very* interesting if it was used to store PII, due to the potential s3 bucket enumeration  
   Since these buckets can already be easily discovered, and do not contain PII, it isn't really interesting  
