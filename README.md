@@ -6,7 +6,7 @@ http://github.com/OWASP/Serverless-Goat
 After being inspired by the essentially free training for a serverless lambda function I created this walkthrough.    
 
 **Note this requires the setup of a free-tier Amazon AWS account**   
-During my usage of serverless-goat I encountered 0 charges to my free-tier Amazon AWS account, however; small charges could be encurred anytime Amazon AWS is used. Just a forewarning since my understanding of Amazon AWS is still relatively small, there's a lot to that beasty.  
+During my usage of serverless-goat I encountered 0 charges to my free-tier Amazon AWS account, however; small charges could be encurred anytime Amazon AWS is used. 
 
 ## Installation 
 1. Access the AWS Serverless Application Repository   
